@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang = "es" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+		<!-- CSS -->
+    	<link rel="stylesheet" th:href="@{/static/css/styles.css}" href="./css/styles.css">
+		<!-- MDB CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
+		<title>Iniciar Sesión</title>
+	</head>
+	<body id="intro" class = "loginBody">
+			<!-- Login Body -->
+			<div class="d-flex align-items-center h-100">
+				<div class="container w-75 bg-white rounded shadow align-self-center">
+					<div class="row align-items-stretch">
+						<div class="col vh p-5 bg d-none d-md-block rounded-start"></div>
+						<div class="col p-5 align-self-center rounded-end">
+							<div class="text-end mb-5">
+								<img src="https://1000marcas.net/wp-content/uploads/2019/11/Logo-Nike-1.png" alt="nike" style="width:48px">
+							</div>
+							<h2 class="fw-bold text-center">Iniciar sesión</h2>
+							<!-- 
+							<div th:if="${param.Logout}">
+								<h5 class = "text-center text-success">Sesión Cerrada Correctamente</h5>
+							</div>
+							<div th:if="${param.error}">
+								<h5 class = "text-danger text-success">Usuario y Contraseña Incorrectas</h5>
+							</div>
+							 -->
+							<form th:action = "@{/}" method = "post">
+								<div class="form-outline mb-4">
+									<input type="text" class = "form-control" id = "username" name ="username" autofocus>
+									<label class = "form-label"  for="username">Usuario</label>
+								</div>
+								<div class="form-outline mb-4">
+									<input type="password" class = "form-control" id = "password" name ="password">
+									<label class ="form-label" for= "password">Contraseña</label>
+								</div>
+								<div class="my-4 d-grid">
+									<button type="submit" class = "btn btn-color">Iniciar sesión</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+	    <!-- MDB Script -->
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+	    </body>
+</html>
