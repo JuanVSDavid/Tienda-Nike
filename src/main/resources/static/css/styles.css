@@ -1,0 +1,69 @@
+:root{
+  --lightGray: rgb(143, 143, 143);
+  --space: #290f80;
+  --purple: #8a3ac5;
+  --lightPurple: #9251c0;
+}
+
+html,
+body
+#intro{
+  height: 100%;
+}
+
+#intro{
+  height: 100vh;
+}
+
+.bg{
+  background-image: url(https://i.pinimg.com/originals/c5/40/73/c5407317ae1bca630f310237314d23c3.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loginBody{
+  background: var(--space);
+  background: linear-gradient(to right, var(--space), var(--purple));
+  padding: 25px 0 0 0;
+}
+
+.btn-color{
+  background: var(--purple) !important;
+  color: #fff !important;
+}
+
+.btn-color:hover{
+  background: var(--lightPurple) !important;
+}
+
+.vh{
+  height: 80vh;
+}
+.p-70{
+  padding: 70px 0 0 0;
+}
+/* .bg-colorNav{
+  background: ;
+} */
+
+.no-styles{
+  box-shadow: none;
+  color: transparent;
+}
+
+@media (min-width: 560px) and (max-width: 750px) {
+  html,
+  body,
+  .intro {
+    height: 830px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  .intro {
+    height: 830px;
+  }
+}
