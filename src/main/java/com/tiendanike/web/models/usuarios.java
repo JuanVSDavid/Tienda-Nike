@@ -7,8 +7,10 @@ public class usuarios {
 
     @Id
     private Long user_cedula;
-
+    
+    @Column(unique = true)
     private String username;
+
     private String password;
     private String user_email;
     private String user_name;

@@ -26,13 +26,14 @@ public class usuarioController {
 
     @GetMapping("/usuarios")
     public ModelAndView tablaUsuarios(Model model){
+        model.addAttribute("activePage", "usuarios");
         ModelAndView mav = new ModelAndView("usuarios");
         mav.addObject("user", CUS.listOfUsuarios());
         return mav;
     }
     
     @PostMapping("/addUser")
-    public String addUsers(@ModelAttribute usuarios userRegister, HttpSession session, Model model){
+    public String addUsers(@ModelAttribute usuarios userRegister, HttpSession session){
         if(CUS.addUser(userRegister) != null){
             session.setAttribute("message", "Usuario se agregó correctamente.");
             return "redirect:/usuarios";
