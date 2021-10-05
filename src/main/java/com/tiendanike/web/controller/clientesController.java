@@ -3,7 +3,7 @@ package com.tiendanike.web.controller;
 import javax.servlet.http.HttpSession;
 
 import com.tiendanike.web.models.clientes;
-import com.tiendanike.web.service.CustomClientServiceImplements;
+import com.tiendanike.web.service.CustomClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,7 +22,7 @@ public class clientesController {
     
     @Autowired
     @Qualifier("clientesService")
-    private CustomClientServiceImplements CCSI;
+    private CustomClientService CCSI;
 
     @GetMapping("/clientes")
     public ModelAndView listOfClient(Model model){

@@ -22,6 +22,7 @@ $(document).ready(function () {
     $("#datatable-search").keyup(function () {
         dataTable.search($(this).val()).draw();
     });
+    //Usuarios
     var arrayUser = ["#user_cedula_update", "#user_name_update",
         "#username_update", "#roles_update", "#user_email_update"];
     var datosTabla = [];
@@ -36,6 +37,7 @@ $(document).ready(function () {
         $(arrayUser[4]).val(datosTabla[4]);
         datosTabla = [];
     })
+    //Clientes
     var arrayClient = ["#client_cedula_update", "#client_name_update", "#client_address_update",
         "#client_tel_update", "#client_email_update"];
     $('.dataClient').click(function () {
@@ -49,10 +51,48 @@ $(document).ready(function () {
         $(arrayClient[4]).val(datosTabla[4]);
         datosTabla = [];
     })
-    
+    //Proveedores
+    var arraySupplier = ["#supplier_nit_update", "#supplier_name_update", "#supplier_address_update",
+    "#supplier_tel_update", "#supplier_city_update"];
+    $('.dataSupplier').click(function () {
+        $(this).parents('tr').find('td').each(function () {
+            datosTabla.push($(this).html());
+        });
+        $(arraySupplier[0]).val(datosTabla[0]);
+        $(arraySupplier[1]).val(datosTabla[1]);
+        $(arraySupplier[2]).val(datosTabla[2]);
+        $(arraySupplier[3]).val(datosTabla[3]);
+        $(arraySupplier[4]).val(datosTabla[4]);
+        datosTabla = [];
+    })
 });
 
-function deleteClient(client_cedula){
+function deleteSupplier(supplier_nit) {
+    Swal.fire({
+        title: '¿Estas seguro?',
+        text: "¡No podras revertir este cambio!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#8a3ac5',
+        cancelButtonColor: '#f93154',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/deleteSupplier/' + supplier_nit
+            })
+            Swal.fire(
+                '¡Eliminado!',
+                'El usuario se ha eliminado.',
+                'success'
+            ).then(() => {
+                location.href = "/proveedores"
+            })
+        }
+    })
+}
+
+function deleteClient(client_cedula) {
     Swal.fire({
         title: '¿Estas seguro?',
         text: "¡No podras revertir este cambio!",

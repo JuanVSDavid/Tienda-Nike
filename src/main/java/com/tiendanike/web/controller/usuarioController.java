@@ -54,9 +54,7 @@ public class usuarioController {
 
     @GetMapping("/deleteUser/{user_cedula}")
     public String deleteUser(@PathVariable long user_cedula){
-        if(CUS.deleteUser(user_cedula) != null){
-            return "redirect:/usuarios";
-        }
+        CUS.deleteUser(user_cedula);
         return "redirect:/usuarios";
     } 
 }

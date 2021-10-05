@@ -38,12 +38,8 @@ public class CustomUserServiceImplement implements CustomUserService{
     }
 
     @Override
-    public String deleteUser(long user_cedula) {
-        if(ur.existsById(user_cedula)){
-            ur.deleteById(user_cedula);
-            return "success";
-        }
-        return null;
+    public void deleteUser(long user_cedula) {
+        ur.deleteById(user_cedula);
     }
 
 }

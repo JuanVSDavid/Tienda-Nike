@@ -12,5 +12,5 @@ public interface CustomUserService {
 
     public abstract usuarios updateUser(usuarios user);
 
-    public abstract String deleteUser(long user_cedula);
+    public abstract void deleteUser(long user_cedula);
 }
