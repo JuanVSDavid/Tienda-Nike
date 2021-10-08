@@ -55,8 +55,8 @@ $(document).ready(function () {
         datosTabla = [];
     })
     //Clientes
-    var arrayClient = ["#client_cedula_update", "#client_name_update", "#client_address_update",
-        "#client_tel_update", "#client_email_update"];
+    var arrayClient = ["#client_cedula_update", "#client_name_update", "#client_email_update",
+        "#client_tel_update", "#client_address_update"];
     $('.dataClient').click(function () {
         $(this).parents('tr').find('td').each(function () {
             datosTabla.push($(this).html());
