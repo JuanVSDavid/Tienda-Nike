@@ -7,6 +7,7 @@ import com.tiendanike.web.repository.usuariosRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service("usuarioService")
@@ -24,6 +25,8 @@ public class CustomUserServiceImplement implements CustomUserService{
     @Override
     public usuarios addUser(usuarios user) {
         if(!ur.existsById(user.getUser_cedula())){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(user.getPassword()));
             return ur.save(user);
         }
         return null;

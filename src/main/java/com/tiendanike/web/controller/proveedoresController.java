@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping
+@RequestMapping("/admin")
 public class proveedoresController {
 
     @Autowired
@@ -36,25 +36,25 @@ public class proveedoresController {
     public String addSupplier(@ModelAttribute proveedores supplier, HttpSession session){
         if(CSSI.addSupplier(supplier) != null){
             session.setAttribute("message", "El proveedor se agrego correctamente.");
-            return "redirect:/proveedores";
+            return "redirect:/admin/proveedores";
         }
         session.setAttribute("alert", "El proveedor ya existe.");
-        return "redirect:/proveedores";
+        return "redirect:/admin/proveedores";
     }
 
     @PostMapping("/updateSupplier")
     public String updateSupplier(@ModelAttribute proveedores supplier, HttpSession session){
         if(CSSI.updateSupplier(supplier) != null){
             session.setAttribute("message", "El proveedor se modifico correctamente.");
-            return "redirect:/proveedores";
+            return "redirect:/admin/proveedores";
         }
         session.setAttribute("alert", "El proveedor no existe.");
-        return "redirect:/proveedores";
+        return "redirect:/admin/proveedores";
     }
     
     @GetMapping("/deleteSupplier/{supplier_nit}")
     public String deleteSupplier(@PathVariable long supplier_nit, HttpSession session){
         CSSI.deleteSupplier(supplier_nit);
-        return "redirect:/proveedores";
+        return "redirect:/admin/proveedores";
     }
 }

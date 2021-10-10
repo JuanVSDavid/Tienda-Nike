@@ -55,8 +55,7 @@ $(document).ready(function () {
         datosTabla = [];
     })
     //Clientes
-    var arrayClient = ["#client_cedula_update", "#client_name_update", "#client_email_update",
-        "#client_tel_update", "#client_address_update"];
+    var arrayClient = ["#client_cedula_update", "#client_name_update", "#client_email_update", "#client_tel_update", "#client_address_update" ];
     $('.dataClient').click(function () {
         $(this).parents('tr').find('td').each(function () {
             datosTabla.push($(this).html());
@@ -96,14 +95,14 @@ function deleteSupplier(supplier_nit) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '/deleteSupplier/' + supplier_nit
+                url: '/admin/deleteSupplier/' + supplier_nit
             })
             Swal.fire(
                 '¡Eliminado!',
                 'El usuario se ha eliminado.',
                 'success'
             ).then(() => {
-                location.href = "/proveedores"
+                location.href = "/admin/proveedores"
             })
         }
     })
@@ -121,14 +120,14 @@ function deleteClient(client_cedula) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '/deleteClient/' + client_cedula
+                url: '/admin/deleteClient/' + client_cedula
             })
             Swal.fire(
                 '¡Eliminado!',
                 'El usuario se ha eliminado.',
                 'success'
             ).then(() => {
-                location.href = "/clientes"
+                location.href = "/admin/clientes"
             })
         }
     })
@@ -146,14 +145,14 @@ function deleteUser(user_cedula) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '/deleteUser/' + user_cedula
+                url: '/admin/deleteUser/' + user_cedula
             })
             Swal.fire(
                 '¡Eliminado!',
                 'El usuario se ha eliminado.',
                 'success'
             ).then(() => {
-                location.href = "/usuarios"
+                location.href = "/admin/usuarios"
             })
         }
     })

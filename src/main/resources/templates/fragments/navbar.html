@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
 </head>
-    <!--Navbar-->
-    <nav class="navbar navbar-light navbar-expand-md fixed-top bg-light bg-colorNav" th:fragment = "navbar">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarT"
-                aria-controls="navbarT" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse d-md-flex justify-content-md-between align-items-md-center"
-                id="navbarT">
-                <a th:href="@{/}" class="navbar-brand mb-1 d-flex align-items-center">
-                    <img src="https://1000marcas.net/wp-content/uploads/2019/11/Logo-Nike-1.png" alt="nike"
-                        style="width:50px"></a>
-                <ul class="navbar-nav">
-                    <li class="nav-item me-3 me-lg-1">
-                        <a th:href="@{/usuarios}" th:class="${activePage == 'usuarios'} ? 'nav-link active' : 'nav-link'">Usuarios</a>
-                    </li>
-                    <li class="nav-item me-3 me-lg-1">
-                        <a th:href="@{/clientes}" th:class="${activePage == 'clientes'} ? 'nav-link active' : 'nav-link'">Clientes</a>
-                    </li>
-                    <li class="nav-item me-3 me-lg-1">
-                        <a th:href="@{/proveedores}" th:class="${activePage == 'proveedores'} ? 'nav-link active' : 'nav-link'">Proveedores</a>
-                    </li>
-                    <li class="nav-item me-3 me-lg-1">
-                        <a th:href="@{/}" class="nav-link">Productos</a>
-                    </li>
-                    <li class="nav-item me-3 me-lg-1">
-                        <a th:href="@{/}" class="nav-link">Ventas</a>
-                    </li>
-                    <li class="nav-item me-3 me-lg-1">
-                        <a th:href="@{/}" class="nav-link">Reportes</a>
-                    </li>
-                </ul>
-                <form class="w-auto">
-                    <a th:href="@{/logout}" class="btn btn btn-outline-secondary" type="submit">Cerrar Sesión</a>
-                </form>
-            </div>
+<!--Navbar-->
+<nav class="navbar navbar-light navbar-expand-md fixed-top bg-light bg-colorNav" th:fragment="navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarT"
+            aria-controls="navbarT" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- collapse navbar -->
+        <div class="collapse navbar-collapse me-auto" id="navbarT">
+            <a th:href="@{/}" class="navbar-brand mb-1 d-flex align-items-center">
+                <img src="https://1000marcas.net/wp-content/uploads/2019/11/Logo-Nike-1.png" alt="nike"
+                    style="width:50px"></a>
+            <ul class="navbar-nav">
+                <li class="nav-item me-3 me-lg-1">
+                    <a th:href="@{/admin/usuarios}"
+                        th:class="${activePage == 'usuarios'} ? 'nav-link active' : 'nav-link'">Usuarios</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a th:href="@{/admin/clientes}"
+                        th:class="${activePage == 'clientes'} ? 'nav-link active' : 'nav-link'">Clientes</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a th:href="@{/admin/proveedores}"
+                        th:class="${activePage == 'proveedores'} ? 'nav-link active' : 'nav-link'">Proveedores</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a th:href="@{/}" class="nav-link">Productos</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a th:href="@{/}" class="nav-link">Ventas</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a th:href="@{/}" class="nav-link">Reportes</a>
+                </li>
+            </ul>
         </div>
-    </nav>
-    <!--End Navbar-->
+        <div class="d-flex align-items-center">
+            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                <span th:text = "${#authentication.getPrincipal().getUsername()}" class = "me-3">Not name</span>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRALBplMxySL51Y_dJZ5FTrLpa1rpD72FebJA&usqp=CAU" class="rounded-circle" height="25" alt="usuario"/>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                <li>
+                    <a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--End Navbar-->
+
 </html>

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping
+@RequestMapping("/admin")
 public class usuarioController {
 
     @Autowired
@@ -25,7 +25,8 @@ public class usuarioController {
     private CustomUserService CUS;
 
     @GetMapping("/usuarios")
-    public ModelAndView tablaUsuarios(Model model){
+    public ModelAndView tablaUsuarios(Model model, HttpSession session){
+        // session.setAttribute("displayUsuario", CUD.getUsername());
         model.addAttribute("activePage", "usuarios");
         ModelAndView mav = new ModelAndView("usuarios");
         mav.addObject("user", CUS.listOfUsuarios());
@@ -36,25 +37,25 @@ public class usuarioController {
     public String addUsers(@ModelAttribute usuarios userRegister, HttpSession session){
         if(CUS.addUser(userRegister) != null){
             session.setAttribute("message", "Usuario se agregó correctamente.");
-            return "redirect:/usuarios";
+            return "redirect:/admin/usuarios";
         }
         session.setAttribute("alert", "El Usuario ya existe.");
-        return "redirect:/usuarios";
+        return "redirect:/admin/usuarios";
     }
 
     @PostMapping("/updateUser")
     public String updateUser(HttpSession session, @ModelAttribute usuarios userRegister){
         if(CUS.updateUser(userRegister) != null){
             session.setAttribute("message", "Se actualizo correctamente el usuario");
-            return "redirect:/usuarios";
+            return "redirect:/admin/usuarios";
         }
         session.setAttribute("alert", "El Usuario no existe.");
-        return "redirect:/usuarios";
+        return "redirect:/admin/usuarios";
     }
 
     @GetMapping("/deleteUser/{user_cedula}")
     public String deleteUser(@PathVariable long user_cedula){
         CUS.deleteUser(user_cedula);
-        return "redirect:/usuarios";
+        return "redirect:/admin/usuarios";
     } 
 }

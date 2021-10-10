@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping
+@RequestMapping("/admin")
 public class clientesController {
     
     @Autowired
@@ -36,25 +36,25 @@ public class clientesController {
     public String addClient(@ModelAttribute clientes client, HttpSession session){
         if(CCSI.addCliente(client) != null){
             session.setAttribute("message", "El cliente se agrego correctamente.");
-            return "redirect:/clientes";
+            return "redirect:/admin/clientes";
         }
         session.setAttribute("alert", "El cliente ya existe.");
-        return "redirect:/clientes";
+        return "redirect:/admin/clientes";
     }
 
     @PostMapping("/updateClient")
     public String updateClient(@ModelAttribute clientes client, HttpSession session){
         if(CCSI.updateClient(client) != null){
             session.setAttribute("message", "El cliente se modifico correctamente.");
-            return "redirect:/clientes";
+            return "redirect:/admin/clientes";
         }
         session.setAttribute("alert", "El cliente no existe.");
-        return "redirect:/clientes";
+        return "redirect:/admin/clientes";
     }
 
     @GetMapping("/deleteClient/{client_cedula}")
     public String deleteClient(@PathVariable long client_cedula){
         CCSI.deleteClient(client_cedula);
-        return "redirect:/clientes";
+        return "redirect:/admin/clientes";
     }
 }

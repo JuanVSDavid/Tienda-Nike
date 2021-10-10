@@ -39,7 +39,7 @@
                                     <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                         aria-label="Cerrar"></button>
                                 </div>
-                                <form class="p-3 needs-validation" th:action="@{/addUser}" th:object="${userRegister}"
+                                <form class="p-3 needs-validation" th:action="@{/admin/addUser}" th:object="${userRegister}"
                                     method="POST" novalidate>
                                     <div class="modal-body">
                                         <div class="row">
@@ -183,7 +183,7 @@
                                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Cancelar">
                                 </button>
                             </div>
-                            <form class="p-3 needs-validation" th:action="@{/updateUser}" th:object="${user}"
+                            <form class="p-3 needs-validation" th:action="@{/admin/updateUser}" th:object="${user}"
                                 method="POST" novalidate>
                                 <div class="modal-body">
                                     <div class="row">
