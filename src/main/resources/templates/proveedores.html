@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+    <!-- MDB CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+    <title>Clientes</title>
+</head>
+
+<body>
+    <!--Navbar-->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <!--End Navbar-->
+    <div id="intro">
+        <div class="p-70 h-100">
+            <div class="container">
+                <div class="row mb-3">
+                    <!--button modal "Nuevo"-->
+                    <button type="button" class="btn btn-success col-2" data-mdb-toggle="modal"
+                        data-mdb-target="#addUserModal">
+                        Nuevo
+                    </button>
+                    <!--Modal "Nuevo"-->
+                    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="modal-label"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-label">Agregar Proveedores</h5>
+                                    <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                        aria-label="Cerrar"></button>
+                                </div>
+                                <form class="p-3 needs-validation" th:action="@{/admin/addSupplier}"
+                                    th:object="${supplier}" method="POST" novalidate>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-outline mb-4">
+                                                    <input type="number" class="form-control" id="supplier_nit"
+                                                        name="supplier_nit">
+                                                    <label class="form-label" for="supplier_nit">NIT</label>
+                                                    <div class="invalid-feedback">El NIT que ingreso es inválido o esta
+                                                        vacio.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" class="form-control" id="supplier_name"
+                                                        name="supplier_name">
+                                                    <label class="form-label" for="supplier_name">Nombre
+                                                        Completo</label>
+                                                    <div class="invalid-feedback">El nombre que ingreso es inválido o
+                                                        esta
+                                                        vacio.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" class="form-control" id="supplier_address"
+                                                        name="supplier_address">
+                                                    <label class="form-label" for="supplier_address">Dirección</label>
+                                                    <div class="invalid-feedback">La dirección que ingreso es inválida o
+                                                        esta
+                                                        vacio.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-outline col-12 mb-4">
+                                                    <input type="text" class="form-control" id="supplier_tel"
+                                                        name="supplier_tel">
+                                                    <label class="form-label" for="supplier_tel">Teléfono</label>
+                                                    <div class="invalid-feedback">El teléfono que ingreso es inválido o
+                                                        esta
+                                                        vacio.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-outline col-12">
+                                                    <input type="text" class="form-control" id="supplier_city"
+                                                        name="supplier_city">
+                                                    <label class="form-label" for="supplier_city">Ciudad</label>
+                                                    <div class="invalid-feedback">La ciudad que ingreso es inválida o
+                                                        esta
+                                                        vacio.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-color" type="submit">Crear</button>
+                                        <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">
+                                            Cerrar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End modal "Nuevo"-->
+                    <!-- Search -->
+                    <div class="form-outline offset-6 col-4">
+                        <input type="text" class="form-control" id="datatable-search">
+                        <label class="form-label" for="datatable-search">Buscar</label>
+                    </div>
+                    <!-- End Search -->
+                </div>
+                <!-- Status Alert-->
+                <div class="row">
+                    <div th:if="${session.message}" th:classappends="${session.message}"
+                        class="alert alert-success text-center" role="alert" data-mbd-color="success">
+                        <p th:text="${session.message}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <div th:if="${session.alert}" th:classappends="${session.alert}"
+                        class="alert alert-danger text-center" role="alert" data-mbd-color="danger">
+                        <p th:text="${session.alert}"></p>
+                        <th:block th:text="${#session.removeAttribute('alert')}"></th:block>
+                    </div>
+                </div>
+                <!--End Status Alert-->
+                <!--table-->
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-borderless table-striped align-middle">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th scope="col">NIT</th>
+                                <th scope="col">Nombre del Proveedor</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Ciudad</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr th:each="proveedores : ${supplier}">
+                                <td scope="row" th:text="${proveedores.supplier_nit}"></td>
+                                <td th:text="${proveedores.supplier_name}"></td>
+                                <td th:text="${proveedores.supplier_address}"></td>
+                                <td th:text="${proveedores.supplier_tel}"></td>
+                                <td th:text="${proveedores.supplier_city}"></td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="crud">
+                                        <a type="button" class="btn btn-warning btn-sm dataSupplier"
+                                            data-mdb-toggle="modal" data-mdb-target="#editarModal">
+                                            Editar
+                                        </a>
+                                        <a type="button" class="btn btn-danger btn-sm"
+                                            th:onclick="deleteSupplier([[${proveedores.supplier_nit}]])">
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End table-->
+                <!--Modal Editar-->
+                <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editarModalLabel">Editar Proveedor</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Cancelar">
+                                </button>
+                            </div>
+                            <form class="p-3 needs-validation" th:action="@{/admin/updateSupplier}" th:object="${supplier}"
+                                method="POST" novalidate>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-outline mb-4">
+                                                <input type="number" class="form-control" id="supplier_nit_update"
+                                                    name="supplier_nit">
+                                                <label class="form-label" for="supplier_nit">NIT</label>
+                                                <div class="invalid-feedback">El NIT que ingreso es inválido o esta
+                                                    vacio.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-outline mb-4">
+                                                <input type="text" class="form-control" id="supplier_name_update"
+                                                    name="supplier_name">
+                                                <label class="form-label" for="supplier_name">Nombre Completo</label>
+                                                <div class="invalid-feedback">El nombre que ingreso es inválido o esta
+                                                    vacio.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-outline mb-4">
+                                                <input type="text" class="form-control" id="supplier_address_update"
+                                                    name="supplier_address">
+                                                <label class="form-label" for="supplier_address">Dirección</label>
+                                                <div class="invalid-feedback">La dirección que ingreso es inválida o
+                                                    esta
+                                                    vacio.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-outline mb-4">
+                                                <input type="text" class="form-control" id="supplier_tel_update"
+                                                    name="supplier_tel">
+                                                <label class="form-label" for="supplier_tel">Teléfono</label>
+                                                <div class="invalid-feedback">El teléfono que ingreso es inválido o esta
+                                                    vacio.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-outline">
+                                                <input type="text" class="form-control" id="supplier_city_update"
+                                                    name="supplier_city">
+                                                <label class="form-label" for="supplier_city">Ciudad</label>
+                                                <div class="invalid-feedback">La ciudad que ingreso es inválida o esta
+                                                    vacio.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-color" type="submit">Modificar</button>
+                                    <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MDB Script -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+        <script type="text/javascript" th:src="@{/js/main.js}" src="../static/js/main.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
