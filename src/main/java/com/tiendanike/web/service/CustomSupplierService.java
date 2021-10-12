@@ -9,4 +9,5 @@ public interface CustomSupplierService {
     public abstract proveedores addSupplier(proveedores supplier);
     public abstract proveedores updateSupplier(proveedores supplier);
     public abstract void deleteSupplier(long supplier_nit);
+    public abstract proveedores searchSupplier(long supplier_nit);
 }

@@ -33,6 +33,10 @@ body
   color: #fff !important;
 }
 
+.colorGray{
+  background: var(--lightGray);
+}
+
 .btn-color:hover{
   background: var(--lightPurple) !important;
 }

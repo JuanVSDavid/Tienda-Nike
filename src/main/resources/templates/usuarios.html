@@ -131,7 +131,9 @@
                     </div>
                     <div th:if="${session.alert}" th:classappends="${session.alert}"
                         class="alert alert-danger text-center" role="alert" data-mbd-color="danger">
-                        <p th:text="${session.alert}"></p>
+                        <div th:each="session: ${alert}">
+                            <p th:text="${session.alert}"></p>
+                        </div>
                         <th:block th:text="${#session.removeAttribute('alert')}"></th:block>
                     </div>
                 </div>
@@ -265,6 +267,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script type="text/javascript" th:src="@{/js/main.js}" src="../static/js/main.js"></script>
+    <script type="text/javascript" th:src="@{/js/validationForm.js}" src="../static/js/validationForm.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

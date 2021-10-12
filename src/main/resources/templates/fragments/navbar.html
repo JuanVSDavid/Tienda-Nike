@@ -30,7 +30,7 @@
                         th:class="${activePage == 'proveedores'} ? 'nav-link active' : 'nav-link'">Proveedores</a>
                 </li>
                 <li class="nav-item me-3 me-lg-1">
-                    <a th:href="@{/}" class="nav-link">Productos</a>
+                    <a th:href="@{/productos}" th:class="${activePage == 'productos'} ? 'nav-link active' : 'nav-link'">Productos</a>
                 </li>
                 <li class="nav-item me-3 me-lg-1">
                     <a th:href="@{/}" class="nav-link">Ventas</a>
