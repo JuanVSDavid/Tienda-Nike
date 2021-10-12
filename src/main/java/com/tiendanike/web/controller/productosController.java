@@ -46,7 +46,7 @@ public class productosController {
                 }
             }
             session.setAttribute("alert", "El archivo que subio esta vacio.");
-            return "redirect:/productos";
+        return "redirect:/productos";
         }
         session.setAttribute("alert", "El archivo que subio no es .csv");
         return "redirect:/productos";
