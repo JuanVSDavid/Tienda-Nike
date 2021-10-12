@@ -1,18 +1,39 @@
 package com.tiendanike.web.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class proveedores {
     @Id
-    private long supplier_nit;
+    private Long supplier_nit;
 
     private String supplier_name;
     private String supplier_tel;
     private String supplier_address;
     private String supplier_city;
+
+    @OneToMany(mappedBy = "proveedores")
+    private List<productos> productos = new ArrayList<>();
+
+    public proveedores() {
+        
+    }
     
+    public proveedores(long supplier_nit, String supplier_name, String supplier_tel, String supplier_address,
+            String supplier_city, List<com.tiendanike.web.models.productos> productos) {
+        this.supplier_nit = supplier_nit;
+        this.supplier_name = supplier_name;
+        this.supplier_tel = supplier_tel;
+        this.supplier_address = supplier_address;
+        this.supplier_city = supplier_city;
+        this.productos = productos;
+    }
+
     public long getSupplier_nit() {
         return supplier_nit;
     }
@@ -43,11 +64,19 @@ public class proveedores {
     public void setSupplier_city(String supplier_city) {
         this.supplier_city = supplier_city;
     }
+    
+    public List<productos> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<productos> productos) {
+        this.productos = productos;
+    }
+
     @Override
     public String toString() {
-        return "proveedores [supplier_address=" + supplier_address + ", supplier_city=" + supplier_city
-                + ", supplier_name=" + supplier_name + ", supplier_nit=" + supplier_nit + ", supplier_tel="
-                + supplier_tel + "]";
-    }
-    
+        return "proveedores [productos=" + productos + ", supplier_address=" + supplier_address + ", supplier_city="
+                + supplier_city + ", supplier_name=" + supplier_name + ", supplier_nit=" + supplier_nit
+                + ", supplier_tel=" + supplier_tel + "]";
+    }    
 }

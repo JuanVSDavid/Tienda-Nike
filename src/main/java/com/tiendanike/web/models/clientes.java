@@ -4,12 +4,24 @@ import javax.persistence.*;
 @Entity
 public class clientes {
     @Id
-    private long client_cedula;
+    private Long client_cedula;
     private String client_address;
     private String client_email;
     private String client_name;
     private String client_tel;
+
+    public clientes(){
+        
+    }
     
+    public clientes(long client_cedula, String client_address, String client_email, String client_name,
+            String client_tel) {
+        this.client_cedula = client_cedula;
+        this.client_address = client_address;
+        this.client_email = client_email;
+        this.client_name = client_name;
+        this.client_tel = client_tel;
+    }
     public long getClient_cedula() {
         return client_cedula;
     }

@@ -16,6 +16,19 @@ public class usuarios {
     private String user_name;
     private String roles;
 
+    public usuarios() {
+        
+    }
+
+    public usuarios(Long user_cedula, String username, String password, String user_email, String user_name,
+            String roles) {
+        this.user_cedula = user_cedula;
+        this.username = username;
+        this.password = password;
+        this.user_email = user_email;
+        this.user_name = user_name;
+        this.roles = roles;
+    }
     public long getUser_cedula() {
         return user_cedula;
     }

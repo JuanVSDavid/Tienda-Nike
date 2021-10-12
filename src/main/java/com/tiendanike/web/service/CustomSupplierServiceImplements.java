@@ -41,5 +41,13 @@ public class CustomSupplierServiceImplements implements CustomSupplierService {
     public void deleteSupplier(long supplier_nit) {
         pr.deleteById(supplier_nit);
     }
+
+    @Override
+    public proveedores searchSupplier(long supplier_nit) {
+        if(pr.existsById(supplier_nit)){
+            return pr.getById(supplier_nit);
+        }
+        return null;
+    }
     
 }
