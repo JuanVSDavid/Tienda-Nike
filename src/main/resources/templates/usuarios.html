@@ -131,9 +131,7 @@
                     </div>
                     <div th:if="${session.alert}" th:classappends="${session.alert}"
                         class="alert alert-danger text-center" role="alert" data-mbd-color="danger">
-                        <div th:each="session: ${alert}">
-                            <p th:text="${session.alert}"></p>
-                        </div>
+                        <p th:text="${session.alert}"></p>
                         <th:block th:text="${#session.removeAttribute('alert')}"></th:block>
                     </div>
                 </div>

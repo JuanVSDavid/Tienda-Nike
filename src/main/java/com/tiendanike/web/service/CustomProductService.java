@@ -51,12 +51,13 @@ public class CustomProductService {
     }
 
     public String uploadProductos(MultipartFile file) throws FileNotFoundException, IOException {
-        pr.deleteAll();
         String productosNoAgregados = "";
+        ArrayList<productos> listProductos = new ArrayList<productos>();
         if (!file.isEmpty()) {
             File productosFile = FileConverter(file);
             BufferedReader reader = new BufferedReader(new FileReader(productosFile.getName()));
             String line;
+            Boolean emptyLine = false;
             do {
                 line = reader.readLine();
                 if (line != null) {
@@ -72,17 +73,22 @@ public class CustomProductService {
                                 product.setProduct_price(Double.parseDouble(splitList.get(3)));
                                 product.setProduct_sale_iva(Double.parseDouble(splitList.get(4)));
                                 product.setProduct_sale_price(Double.parseDouble(splitList.get(5)));
-                                pr.save(product);
+                                listProductos.add(product);
                             } else {
                                 // Por si el proveedor no existe
                                 productosNoAgregados += "El producto " + "\"" + splitList.get(1) + "\"" + " con el id: "
-                                        + "\"" + splitList.get(0) + "\"" + " su proveedor" + "("
-                                        + splitList.get(2) + ")" + " no existe; ";
+                                        + "\"" + splitList.get(0) + "\"" + " su proveedor" + "(" + splitList.get(2)
+                                        + ")" + " no existe; ";
                             }
                         } catch (Exception e) {
-                            // Por si el id o algun valor numerico es un String
-                            productosNoAgregados += "El producto " + "\"" + splitList.get(1) + "\"" + " con el id: "
-                                        + "\"" + splitList.get(0) + "\"" + "tiene errores en sus datos; ";
+                            try {
+                                // Por si el id o algun valor numerico es un String
+                                productosNoAgregados += "El producto " + "\"" + splitList.get(1) + "\"" + " con el id: "
+                                        + "\"" + splitList.get(0) + "\"" + " tiene errores en sus datos; ";
+                            } catch (Exception ex) {
+                                // Tiene lineas vacias
+                                emptyLine = true;
+                            }
                         }
                     } else {
                         // Es por si la cadena es mayor a 6 es decir que la linea que se evaluo tiene
@@ -92,7 +98,14 @@ public class CustomProductService {
                     }
                 }
             } while (line != null);
+            if(!listProductos.isEmpty()){
+                pr.deleteAll();
+                pr.saveAll(listProductos);
+            }
             reader.close();
+            if(emptyLine) {
+                return "El archivo tiene lineas vacias o esta vacio; " + productosNoAgregados;
+            }
             return productosNoAgregados;
         }
         return null;
