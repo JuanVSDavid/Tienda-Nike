@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+    <!-- MDB CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
+    <title>Ventas</title>
+</head>
+
+<body>
+    <!--Navbar-->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <!--End Navbar-->
+    <div id="intro">
+        <div class="p-70 h-100">
+            <div class="container">
+                <div>
+                    <div class="d-flex flex-column gap-3 flex-md-row justify-content-md-around">
+                        <select class="form-select col-12 col-md" name="client_cedula" id="client_cedula">
+                            <div th:each="cliente : ${client_list}" name="client_cedula">
+                                <option th:value="${cliente.client_cedula}" th:text="${cliente.client_cedula}"></option>
+                            </div>
+                        </select>
+                        <!-- Función de javascript para que le quede mas sencillo -->
+                        <a class="btn btn-color col-12 col-md-1" type="button" id="addCliente"
+                            onclick="addCliente()">Buscar</a>  
+                        <div class="form-outline col-12 col-md">
+                            <input type="text" class="form-control" id="venta_cliente" th:value="${nombreCliente}"
+                                disabled>
+                            <label class="form-label" for="venta_cliente">Cliente</label>
+                        </div>
+                        <div class="form-outline col-12 col-md">
+                            <input type="text" class="form-control" id="venta_consc" disabled>
+                            <label class="form-label" for="venta_consc">Consec.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="mt-4 table table-borderless table-striped align-middle">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th scope="col">Cod. Producto</th>
+                                <th scope="col">Nombre Producto</th>
+                                <th scope="col">Cant.</th>
+                                <th scope="col">Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr th:each="list : ${list}">
+                                <td scope="row">
+                                    <div class="form-outline">
+                                        <input type="number" class="form-control" th:value="${list.product_id}"
+                                            disabled>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-outline">
+                                        <input type="text" class="form-control" disabled>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-outline">
+                                        <input type="number" class="form-control" name="product_amount" value="0">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-outline">
+                                        <input type="number" class="form-control" name="valor_total" disabled>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="btn btn-color" data-mdb-toggle="modal" data-mdb-target="#addProduct"><i
+                        class="fas fa-plus"></i>
+                </button>
+                <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="addProductLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addProductLabel">Agregar producto</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Cerrar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Id Producto</label>
+                                    <select class="form-select" name="product_id" id="product_id">
+                                        <div th:each="producto : ${product_list}">
+                                            <option th:value="${producto.product_id}" th:text="${producto.product_id}">
+                                            </option>
+                                        </div>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="addProduto()" class="btn btn-color">Agregar</button>
+                                <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">
+                                    Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+                <div class="d-flex  justify-content-end">
+                    <div class="row"></div>
+                    <div class="col-6"></div>
+                    <div class="col-6">
+                        <div class="form-outline col-12 offset-md-6 col-md-6 mb-3">
+                            <input type="text" class="form-control" id="total_venta" name="" disabled>
+                            <label class="form-label" for="total_venta">Total Venta</label>
+                        </div>
+                        <div class="form-outline col-12 offset-md-6 col-md-6 mb-3">
+                            <input type="text" class="form-control" id="total_iva" disabled>
+                            <label class="form-label" for="total_iva">Total IVA</label>
+                        </div>
+                        <div class="form-outline col-12 offset-md-6 col-md-6 mb-3">
+                            <input type="text" class="form-control" id="total_con_iva" disabled>
+                            <label class="form-label" for="total_total_con_iva">Total con IVA</label>
+                        </div>
+                        <button type="submit" class="col-12 offset-md-6 col-md-6 btn btn-success">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- MDB Script -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" th:src="@{/js/ventas.js}" src="../static/js/ventas.js"></script>
+
+</html>

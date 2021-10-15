@@ -1,10 +1,13 @@
 package com.tiendanike.web.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class productos {
@@ -13,7 +16,10 @@ public class productos {
 
     private String product_name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productos", fetch = FetchType.LAZY)
+    private List<detalle_venta> ventas;
+
+    @ManyToOne
     @JoinColumn(name = "supplier_nit")
     private proveedores proveedores;
     
@@ -25,14 +31,16 @@ public class productos {
         
     }
 
-    public productos(long product_id, String product_name, double product_price, double product_sale_price,
-    double product_sale_iva, com.tiendanike.web.models.proveedores proveedores) {
+    public productos(long product_id, String product_name, List<detalle_venta> ventas,
+            com.tiendanike.web.models.proveedores proveedores, double product_price, double product_sale_price,
+            double product_sale_iva) {
         this.product_id = product_id;
         this.product_name = product_name;
+        this.ventas = ventas;
+        this.proveedores = proveedores;
         this.product_price = product_price;
         this.product_sale_price = product_sale_price;
         this.product_sale_iva = product_sale_iva;
-        this.proveedores = proveedores;
     }
 
     public long getProduct_id() {
@@ -49,6 +57,22 @@ public class productos {
 
     public void setProduct_name(String product_name) {
         this.product_name = product_name;
+    }
+
+    public List<detalle_venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(List<detalle_venta> ventas) {
+        this.ventas = ventas;
+    }
+
+    public proveedores getProveedores() {
+        return proveedores;
+    }
+
+    public void setProveedores(proveedores proveedores) {
+        this.proveedores = proveedores;
     }
 
     public double getProduct_price() {
@@ -75,18 +99,12 @@ public class productos {
         this.product_sale_iva = product_sale_iva;
     }
 
-    public proveedores getProveedores() {
-        return proveedores;
-    }
-
-    public void setProveedores(proveedores proveedores) {
-        this.proveedores = proveedores;
-    }
-
     @Override
     public String toString() {
         return "productos [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
                 + product_price + ", product_sale_iva=" + product_sale_iva + ", product_sale_price="
-                + product_sale_price + ", proveedores=" + proveedores + "]";
+                + product_sale_price + ", proveedores=" + proveedores + ", ventas=" + ventas + "]";
     }
+
+    
 }
