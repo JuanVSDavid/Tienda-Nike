@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class detalle_venta {
@@ -21,15 +20,15 @@ public class detalle_venta {
     @JoinColumn(name = "codigo_producto") // product_id
     private productos productos;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "codigo_venta")
     private ventas ventas;
 
     private Double valor_total;
 
-	private Double valor_venta;
+    private Double valor_venta;
 
-	private Double valor_iva;
+    private Double valor_iva;
 
     public detalle_venta() {
     }
@@ -109,5 +108,4 @@ public class detalle_venta {
                 + valor_total + ", valor_venta=" + valor_venta + ", ventas=" + ventas + "]";
     }
 
-    
 }

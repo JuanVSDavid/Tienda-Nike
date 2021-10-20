@@ -1,5 +1,7 @@
 package com.tiendanike.web.models;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ventas {
@@ -15,8 +17,8 @@ public class ventas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo_ventas;
 
-    @OneToOne(mappedBy = "ventas")
-    private detalle_venta detalle_venta;
+    @OneToMany(mappedBy = "ventas")
+    private List<detalle_venta> detalle_venta;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cedula_cliente") // client_cedula
@@ -35,7 +37,7 @@ public class ventas {
     public ventas() {
     }
 
-    public ventas(Long codigo_ventas, com.tiendanike.web.models.detalle_venta detalle_venta,
+    public ventas(Long codigo_ventas, List<com.tiendanike.web.models.detalle_venta> detalle_venta,
             com.tiendanike.web.models.clientes clientes, com.tiendanike.web.models.usuarios usuarios, Double iva_venta,
             Double total_venta, Double valor_venta) {
         this.codigo_ventas = codigo_ventas;
@@ -55,11 +57,11 @@ public class ventas {
         this.codigo_ventas = codigo_ventas;
     }
 
-    public detalle_venta getDetalle_venta() {
+    public List<detalle_venta> getDetalle_venta() {
         return detalle_venta;
     }
 
-    public void setDetalle_venta(detalle_venta detalle_venta) {
+    public void setDetalle_venta(List<detalle_venta> detalle_venta) {
         this.detalle_venta = detalle_venta;
     }
 
