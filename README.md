@@ -2,14 +2,8 @@
 Para usar la app desde el codigo fuente debe:
 
 *   clonar el repositorio
-*   crear un archivo llamado application.properties en la carpeta src\main\resources y agregar la configuracion pertinente para la conexion con la base de datos, ya sea para local con mysql o para servicios aws con mariadb (En el caso de que quiera utilizar la base de datos aws, tiene que agregar la dependencia en el pom)
-    <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
-<dependency>
-    <groupId>org.mariadb.jdbc</groupId>
-    <artifactId>mariadb-java-client</artifactId>
-    <version>3.0.2-rc</version>
-</dependency>    
-*   para realizar el login la primera vez debe crear un usuario en la base de datos generada y usar una contraseña encriptada con bcrypt
+*   crear un archivo llamado application.properties en la carpeta src\main\resources y agregar la configuracion pertinente para la conexion con la base de datos, ya sea para local con mysql o para servicios aws con mariadb
+*   para realizar el login la primera vez en el local debe crear un usuario en la base de datos generada y usar una contraseña encriptada con bcrypt
 *   https://bcrypt-generator.com/ (Con este Link genera la contraseña)
 *   la app cuenta con 6 modulos:
 
