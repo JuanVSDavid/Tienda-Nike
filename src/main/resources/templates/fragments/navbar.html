@@ -33,18 +33,18 @@
                     <a th:href="@{/productos}" th:class="${activePage == 'productos'} ? 'nav-link active' : 'nav-link'">Productos</a>
                 </li>
                 <li class="nav-item me-3 me-lg-1">
-                    <a th:href="@{/}" class="nav-link">Ventas</a>
+                    <a th:href="@{/ventas}" th:class="${activePage == 'ventas'} ? 'nav-link active' : 'nav-link'">Ventas</a>
                 </li>
                 <li class="nav-item me-3 me-lg-1">
-                    <a th:href="@{/}" class="nav-link">Reportes</a>
+                    <a th:href="@{/reportes}" th:class="${activePage == 'reportes'} ? 'nav-link active' : 'nav-link'">Reportes</a>
                 </li>
             </ul>
         </div>
         <div class="d-flex align-items-center">
-            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink"
+            <a class="dropdown-toggle d-flex align-items-center hidden-arrow link-dark" href="#" id="navbarDropdownMenuLink"
                 role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                 <span th:text = "${#authentication.getPrincipal().getUsername()}" class = "me-3">Not name</span>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRALBplMxySL51Y_dJZ5FTrLpa1rpD72FebJA&usqp=CAU" class="rounded-circle" height="25" alt="usuario"/>
+                <span><i class="fas fa-user-circle fa-lg"></i></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                 <li>

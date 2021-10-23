@@ -99,12 +99,4 @@ public class productos {
         this.product_sale_iva = product_sale_iva;
     }
 
-    @Override
-    public String toString() {
-        return "productos [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
-                + product_price + ", product_sale_iva=" + product_sale_iva + ", product_sale_price="
-                + product_sale_price + ", proveedores=" + proveedores + ", ventas=" + ventas + "]";
-    }
-
-    
 }

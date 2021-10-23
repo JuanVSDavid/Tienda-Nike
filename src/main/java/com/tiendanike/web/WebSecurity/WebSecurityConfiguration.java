@@ -33,7 +33,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
         .csrf().disable()
         .authorizeRequests()
         .antMatchers("/login").permitAll()
-        .antMatchers("/","/productos/**", "/reportes/**", "/ventas/**").authenticated()
+        .antMatchers("/","/productos/**", "/reportes", "/ventas/**").authenticated()
         .antMatchers("/admin/**").hasAuthority("ADMIN")
         .and()
         .formLogin(form -> form.defaultSuccessUrl("/")

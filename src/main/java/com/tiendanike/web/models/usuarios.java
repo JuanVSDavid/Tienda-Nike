@@ -91,12 +91,4 @@ public class usuarios {
         this.ventas = ventas;
     }
 
-    @Override
-    public String toString() {
-        return "usuarios [password=" + password + ", roles=" + roles + ", user_cedula=" + user_cedula + ", user_email="
-                + user_email + ", user_name=" + user_name + ", username=" + username + ", ventas=" + ventas + "]";
-    }
-
-    
-    
 }

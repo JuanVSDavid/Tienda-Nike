@@ -25,5 +25,10 @@ public class CustomSaleServiceImplements implements CustomSaleService {
     public ventas saveSale(ventas sale) {
         return vr.save(sale);
     }
+
+    @Override
+    public Long countSale() {
+        return vr.count();
+    }
     
 }

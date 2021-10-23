@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.tiendanike.web.models.productos;
 import com.tiendanike.web.repository.productosRepository;
@@ -109,5 +110,15 @@ public class CustomProductServiceImplements implements CustomProductService {
             return productosNoAgregados;
         }
         return null;
+    }
+
+    @Override
+    public List<productos> listProduct() {
+        return pr.findAll();
+    }
+
+    @Override
+    public productos searchProduct(Long product_id) {
+        return pr.getById(product_id);
     }
 }

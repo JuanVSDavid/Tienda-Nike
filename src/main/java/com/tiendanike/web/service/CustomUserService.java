@@ -13,4 +13,6 @@ public interface CustomUserService {
     public abstract usuarios updateUser(usuarios user);
 
     public abstract void deleteUser(long user_cedula);
+
+    public abstract usuarios getUserByUsername(String username);
 }

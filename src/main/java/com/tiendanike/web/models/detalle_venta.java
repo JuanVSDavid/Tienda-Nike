@@ -101,11 +101,4 @@ public class detalle_venta {
         this.valor_iva = valor_iva;
     }
 
-    @Override
-    public String toString() {
-        return "detalle_venta [cantidad_producto=" + cantidad_producto + ", codigo_detalle_venta="
-                + codigo_detalle_venta + ", productos=" + productos + ", valor_iva=" + valor_iva + ", valor_total="
-                + valor_total + ", valor_venta=" + valor_venta + ", ventas=" + ventas + "]";
-    }
-
 }

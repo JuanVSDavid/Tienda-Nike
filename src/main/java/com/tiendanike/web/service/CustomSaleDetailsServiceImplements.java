@@ -18,5 +18,4 @@ public class CustomSaleDetailsServiceImplements implements CustomSaleDetailsServ
     public detalle_venta saveSaleDetails(detalle_venta detalle_ventas) {
         return dvr.save(detalle_ventas);
     }
-
 }

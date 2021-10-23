@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link nes="" rel="icon" sizes="192x192" href="https://www.nike.com/android-icon-192x192.png">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+    <!-- MDB CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
+    <title>Tienda Nike | Reportes</title>
+</head>
+
+<body>
+    <!--Navbar-->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <!--End Navbar-->
+    <div id="intro">
+        <div class="mask d-flex align-items-center h-100">
+            <div class="container w-75 bg-white rounded p-1 shadow-1">
+                <div class="accordion accordion-flush" id="accordionFlush">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
+                                data-mdb-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">Listado de Usuarios</button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-mdb-parent="#accordionFlush">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless table-striped align-middle">
+                                        <thead class="table-dark text-center">
+                                            <tr>
+                                                <th scope="col">Cédula</th>
+                                                <th scope="col">Nombre de Usuario</th>
+                                                <th scope="col">Usuario</th>
+                                                <th scope="col">Rol</th>
+                                                <th scope="col">Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr th:if="${usuarios}" th:each="usuario : ${usuarios}">
+                                                <td scope="row" th:text="${usuario.user_cedula}"></td>
+                                                <td th:text="${usuario.user_name}"></td>
+                                                <td th:text="${usuario.username}"></td>
+                                                <td th:text="${usuario.roles}"></td>
+                                                <td th:text="${usuario.user_email}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id = "flush-headingTwo">
+                            <button 
+                                class="accordion-button collapsed"
+                                type = "button"
+                                data-mdb-toggle="collapse"
+                                data-mdb-target="#flush-collapseTwo"
+                                aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                Listado de Clientes
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingTwo" data-mdb-parent="#accordionFlush">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless table-striped align-middle">
+                                        <thead class="table-dark text-center">
+                                            <tr>
+                                                <th scope="col">Cédula</th>
+                                                <th scope="col">Nombre del Cliente</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Teléfono</th>
+                                                <th scope="col">Dirección</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr th:if = "${clientes}" th:each="clientes : ${clientes}">
+                                                <td scope="row" th:text="${clientes.client_cedula}"></td>
+                                                <td th:text="${clientes.client_name}"></td>
+                                                <td th:text="${clientes.client_email}"></td>
+                                                <td th:text="${clientes.client_tel}"></td>
+                                                <td th:text="${clientes.client_address}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button 
+                                class="accordion-button collapsed"
+                                type = "button"
+                                data-mdb-toggle="collapse"
+                                data-mdb-target="#flush-collapseThree"
+                                aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                Total de Ventas por Cliente
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingThree" data-mdb-parent="#accordionFlush">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless table-striped align-middle">
+                                        <thead class="table-dark text-center">
+                                            <tr>
+                                                <th>Cédula</th>
+                                                <th>Nombre</th>
+                                                <th>Valor Total Ventas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr th:if="${ventas}" th:each = "venta : ${ventas}">
+                                                <td scope="row" th:text = "${venta.clientes.client_cedula}"></td>
+                                                <td th:text = "${venta.clientes.client_name}"></td>
+                                                <td th:text = "${venta.valor_venta}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div th:if="${total}" class="form-outline mt-3 col-12 offset-md-9 col-md-3">
+                                    <input type="number" class="form-control" id = "total" th:value = "${total}" disabled>
+                                    <label for="total" class="form-label">Total Ventas $</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+</html>

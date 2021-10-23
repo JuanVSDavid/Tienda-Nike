@@ -2,7 +2,6 @@ package com.tiendanike.web.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +19,11 @@ public class ventas {
     @OneToMany(mappedBy = "ventas")
     private List<detalle_venta> detalle_venta;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "cedula_cliente") // client_cedula
     private clientes clientes;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "cedula_usuario") // user_cedula
     private usuarios usuarios;
 
@@ -103,13 +102,6 @@ public class ventas {
 
     public void setValor_venta(Double valor_venta) {
         this.valor_venta = valor_venta;
-    }
-
-    @Override
-    public String toString() {
-        return "ventas [clientes=" + clientes + ", codigo_ventas=" + codigo_ventas + ", detalle_venta=" + detalle_venta
-                + ", iva_venta=" + iva_venta + ", total_venta=" + total_venta + ", usuarios=" + usuarios
-                + ", valor_venta=" + valor_venta + "]";
     }
 
 }

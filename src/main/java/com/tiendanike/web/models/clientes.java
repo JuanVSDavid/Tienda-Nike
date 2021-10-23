@@ -78,11 +78,4 @@ public class clientes {
         this.ventas = ventas;
     }
 
-    @Override
-    public String toString() {
-        return "clientes [client_address=" + client_address + ", client_cedula=" + client_cedula + ", client_email="
-                + client_email + ", client_name=" + client_name + ", client_tel=" + client_tel + ", ventas=" + ventas
-                + "]";
-    }
-
 }

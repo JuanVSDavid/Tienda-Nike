@@ -73,10 +73,4 @@ public class proveedores {
         this.productos = productos;
     }
 
-    @Override
-    public String toString() {
-        return "proveedores [productos=" + productos + ", supplier_address=" + supplier_address + ", supplier_city="
-                + supplier_city + ", supplier_name=" + supplier_name + ", supplier_nit=" + supplier_nit
-                + ", supplier_tel=" + supplier_tel + "]";
-    }    
 }
