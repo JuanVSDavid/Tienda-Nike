@@ -71,3 +71,22 @@ body
     height: 830px;
   }
 }
+/* Home */
+.contenedor{
+  margin: 5px;
+  border-radius: 10px;
+	min-height: 250px;
+	font-weight: bold;
+	padding: 20px;
+	overflow: hidden;
+	background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bodyHome{
+  background: var(--space);
+  background: linear-gradient(to right, var(--space), var(--purple));
+}
+.text-color{
+  color: black;
+}

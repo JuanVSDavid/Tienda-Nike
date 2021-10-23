@@ -40,5 +40,10 @@ public class CustomClientServiceImplements implements CustomClientService{
     public void deleteClient(long client_cedula) {
         uc.deleteById(client_cedula);
     }
+
+    @Override
+    public clientes findbyId(long client_cedula) {
+        return uc.getById(client_cedula);
+    }
     
 }

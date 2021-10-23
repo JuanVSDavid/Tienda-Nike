@@ -5,13 +5,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link nes="" rel="icon" sizes="192x192" href="https://www.nike.com/android-icon-192x192.png">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <!-- CSS -->
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
     <!-- MDB CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
-    <title>Productos</title>
+    <title>Tienda Nike | Productos</title>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
     <!--End Navbar-->
     <div id="intro">
         <div class="mask d-flex align-items-center h-100">
-            <div class="container w-75 bg-white mt-5 rounded shadow p-1">
+            <div class="container w-75 bg-white mt-5 rounded p-1">
                 <div th:if="${session.message}" th:classappends="${session.message}" class="alert alert-success"
                     role="alert" data-mbd-color="success">
                     <p class = "text-center" th:text="${session.message}"></p>
@@ -42,7 +43,7 @@
                     <div class="mb-4">
                         <label class="form-label text-bla" for="File">Este es el orden en el que tiene que subir
                             los productos:</label>
-                        <p class="text-center p-1 colorGray rounded text-light"><strong>código_producto;
+                        <p class="text-center p-1 colorGray rounded text-light"><strong>
                                 nombre_producto; nitproveedor; precio_compra; ivacompra; precio_venta</strong></p>
                         <p class="text-danger">Recuerda: El proveedor tiene que existir.</p>
                         <hr>

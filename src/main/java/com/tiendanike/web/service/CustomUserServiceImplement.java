@@ -35,6 +35,8 @@ public class CustomUserServiceImplement implements CustomUserService{
     @Override
     public usuarios updateUser(usuarios user) {
         if(ur.existsById(user.getUser_cedula())){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(user.getPassword()));
             return ur.save(user);
         }
         return null;
@@ -43,6 +45,11 @@ public class CustomUserServiceImplement implements CustomUserService{
     @Override
     public void deleteUser(long user_cedula) {
         ur.deleteById(user_cedula);
+    }
+
+    @Override
+    public usuarios getUserByUsername(String username) {
+        return ur.findByUsername(username);
     }
 
 }

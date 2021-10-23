@@ -9,4 +9,5 @@ public interface CustomClientService {
     public abstract clientes addCliente(clientes client);
     public abstract clientes updateClient(clientes client);
     public abstract void deleteClient(long client_cedula);
+    public abstract clientes findbyId(long client_cedula);
 }
